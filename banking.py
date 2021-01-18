@@ -80,7 +80,8 @@ class BankingSystem:
             print('You can\'t transfer money to the same account!\n')
         elif self.cur.execute(f'SELECT id FROM card WHERE number = {target};').fetchall():
             amount = int(input('Enter how much money you want to transfer:\n'))
-            if self.cur.execute(f'SELECT id FROM card WHERE number = {card_number} AND balance >= {amount};').fetchall():
+            if self.cur.execute(
+                    f'SELECT id FROM card WHERE number = {card_number} AND balance >= {amount};').fetchall():
                 self.change_balance(card_number, -amount)
                 self.change_balance(target, amount)
                 print('Success!')
